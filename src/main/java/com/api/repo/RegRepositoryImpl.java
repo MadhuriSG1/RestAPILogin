@@ -5,6 +5,7 @@ import java.sql.SQLException;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.jdbc.core.BeanPropertyRowMapper;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.RowMapper;
 import org.springframework.stereotype.Repository;
@@ -30,6 +31,33 @@ String sql = "select * from users where username='" + login.getUsername() + "' a
 List<User> users = jdbcTemplate.query(sql, new UserMapper());
 return users.size() > 0 ? true : false;
 
+}
+
+public User getUsers(Login login)
+{
+	String sql = "select * from users";
+	List<User> users = jdbcTemplate.query(sql, new UserMapper());
+	return users.get(0);
+	
+}
+
+
+@Override
+public User getUserByName(String name) {
+	String sql="select * from users WHERE username=?";
+	//List<User> u=jdbcTemplate.query(sql, new UserMapper());
+	User user = (User)jdbcTemplate.queryForObject(
+			sql, new Object[] {name}, 
+			new BeanPropertyRowMapper(User.class));
+	
+	return user;
+}
+
+@Override
+public List<User> allusers(Login login) {
+	String sql = "select * from users";
+	List<User> users = jdbcTemplate.query(sql, new UserMapper());
+	return users;
 }
 }
 
