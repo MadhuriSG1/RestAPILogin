@@ -36,9 +36,9 @@ public class LoginServiceImpl implements LoginServices {
 		return regRepository.allusers(login);
 	}
 	@Override
-	public User save(User user) {
+	public User saveuser(User user) {
 		// TODO Auto-generated method stub
-		return null;
+		return regRepository.saveuser(user);
 	}
 
 }

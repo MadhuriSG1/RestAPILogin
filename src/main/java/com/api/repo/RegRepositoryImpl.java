@@ -59,6 +59,14 @@ public List<User> allusers(Login login) {
 	List<User> users = jdbcTemplate.query(sql, new UserMapper());
 	return users;
 }
+
+public User saveuser(User user) {
+	String sql = "insert into users values(?,?,?,?,?,?,?)";
+	jdbcTemplate.update(sql, new Object[] { user.getUsername(), user.getPassword(), user.getFirstname(),
+			user.getLastname(), user.getEmail(), user.getAddress(), user.getPhone() });
+	return user;		
+}
+
 }
 
 

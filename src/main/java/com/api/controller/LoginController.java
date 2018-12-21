@@ -6,6 +6,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -21,10 +22,11 @@ import com.api.model.User;
 import com.api.services.LoginServices;
 
 @RestController
+@Controller
 public class LoginController {
 	@Autowired
 	LoginServices loginservice;
-	@PostMapping("/log")
+	@PostMapping("/firstuser")
 	public User login(@RequestBody Login loginreq)
 	{
 		User u=loginservice.getUsers(loginreq);
@@ -33,7 +35,7 @@ public class LoginController {
 	}
 	 
 
-@PostMapping("/users")
+@PostMapping("/isusers")
 	public  boolean getUser(@RequestBody Login loginreq)
 	{
 	   boolean b=loginservice.validateUser(loginreq);
@@ -50,7 +52,7 @@ public  List<User> getAllUsers(@RequestBody Login loginreq)
 	return list;
 	}
 
-@GetMapping("/user")
+@GetMapping("/userbyname")
 public User getUserByName(@RequestParam String username)
 {
 	System.out.println(username);
@@ -58,10 +60,10 @@ public User getUserByName(@RequestParam String username)
 	return u;
 }
 
-@PostMapping(consumes = "/create")
+/*@PostMapping(consumes = "/create")
 public User create(@RequestBody User user) {
-    return loginservice.save(user);
-}
+    return loginservice.saveuser(user);
+}*/
 
 
 }

@@ -12,5 +12,6 @@ public interface RegRepository {
 	User getUsers(Login login);
 	User getUserByName(String name);
 	List<User> allusers(Login login);
+	User saveuser(User user);
 
 }

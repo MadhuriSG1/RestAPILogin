@@ -17,6 +17,6 @@ public interface LoginServices {
 	
 	List<User> allusers(Login login);
 
-	User save(User user);
+	User saveuser(User user);
 
 }
